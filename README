@@ -1,0 +1,16 @@
+This is an upload of the files needed to build the IB Trading algorithm I created.
+
+The program works by scheduling 1 trade daily for each contract that it currently holds a position in.
+
+The main function is in the IBTradeGui.java which is a swing gui. 
+
+When the program is initially run, it starts a scheduler every weekday, so that trades can be scheduled at the close of markets.
+The close of markets depends on which contract is traded because futures contracts close at separate times. 
+
+Thus the program submits a trade when markets are closed, which results in the trade going through when markets open again.
+
+A separate thread is created in connectionStatus.java which ensures that the program is connected to Interactive Brokers by indicating in the GUI with a green or red box.
+
+When scheduling a trade, the program first downloads the historical price data into PostgreSQL and does a simple calculation of whether to hold the position or reverse it.
+
+The program takes advantage of the IB APIs to request historical price data.
